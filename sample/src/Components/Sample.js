@@ -3,7 +3,7 @@ function Sample(){
     return(
         <>
          <div>
-            dfafef
+           Sample
          </div>
         </>
     )
