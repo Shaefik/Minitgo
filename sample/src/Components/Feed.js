@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import './Feed.css';
+import '/home/use/Desktop/new_project/sample/src/Style/Feed.css'
+
 
 function Feed() {
     const [showDetails, setShowDetails] = useState({

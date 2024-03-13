@@ -1,6 +1,7 @@
 
     import React from "react";
-    import './Navbar.css'
+    import '/home/use/Desktop/new_project/sample/src/Style/Navbar.css'
+   
 
     function Navbar() {
         return (

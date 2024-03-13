@@ -1,28 +1,36 @@
 import React from 'react';
-import './App.css';
+import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Navbar from '../../sample/src/Components/Navbar';
-import Feed from '../../sample/src/Components/Feed';
 import Footer from '../../sample/src/Components/Footer';
 import Cards from '../../sample/src/Components/Cards';
 import Text from '../../sample/src/Components/Text';
 import Carousel from '../../sample/src/Components/Carousel';
-import Sample from './Components/Sample';
+
+
+function HomePage() {
+  
+  return (
+    <div>
+      <Cards />
+      <Text />
+      <Carousel />
+     
+    </div>
+  );
+}
+
 function App() {
   return (
     <div className="App">
       <Router>
         <Navbar />
+        <hr></hr>
         <Routes>
-          <Route path="/all" element={<Sample />} />
+          <Route path="/" element={<HomePage />} />
+         
         </Routes>
-        <Cards />
-        <hr />
-        <Text />
-        <hr />
-        <Carousel />
-        <hr />
         <Footer />
       </Router>
     </div>

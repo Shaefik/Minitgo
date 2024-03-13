@@ -1,0 +1,46 @@
+.carousel-container {
+  position: relative;
+ height: 500px;
+}
+
+.card-section {
+  width: 90%;
+
+  display: flex;
+  flex-direction: row;
+  margin-left: 50px;
+  padding-left: 40px;
+}
+#button-show-more{
+  background-color: aliceblue;
+  bottom: 10px;
+}
+
+.card {
+  width: 200px;
+  margin-right: 1rem;
+}
+
+img {
+  height: 200px;
+  width: 200px;
+}
+
+.btn-sec {
+  position: absolute;
+  bottom: 50px;
+  
+  left: 45%; /* Center the buttons horizontally */
+  
+  display: flex;
+  align-items: center;
+}
+
+.arrow-button {
+  background-color: rgba(231, 226, 216, 0.7);
+  margin: 0 0.5rem; /* Adjust the margin between buttons */
+}
+
+.links {
+  margin: 0 0.5rem; /* Adjust the margin between buttons and links */
+}
