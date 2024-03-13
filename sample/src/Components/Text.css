@@ -1,0 +1,22 @@
+h3{
+   
+    width: 100%;
+    font-size: 24px;
+    
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    background-color: rgb(101, 168, 230);
+
+    margin-top: 15px;
+}
+#section{
+    width: 90%;
+    height: relative;
+ 
+    margin-left: 10%;
+    padding-left: 30px;
+}
+.textWrapper {
+    text-align: left;
+    margin-left: 30px;
+}

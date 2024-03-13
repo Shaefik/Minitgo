@@ -1,0 +1,14 @@
+.cards{
+  
+    display: flex;
+    flex-direction: row; 
+ 
+   
+    padding-left: 200px;
+
+}
+.sec{
+   
+
+    width: 100%;
+}

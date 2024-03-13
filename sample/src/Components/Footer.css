@@ -1,0 +1,33 @@
+.footer {
+    background-color: hsl(210, 17%, 98%);
+    padding: 20px 0;
+    margin-top: 0; /* Ensure no top margin for the footer */
+}
+
+.footer .container {
+    text-align: center;
+}
+
+.footer h5 {
+    color: #333;
+}
+
+.footer p {
+    color: white;
+    margin-bottom: 10px;
+}
+
+.feed-structure {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: rgb(231, 127, 127);
+    grid-auto-rows: minmax(200px, auto);
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    margin-bottom: 0; /* Remove the margin bottom to eliminate the gap */
+}
+.footer{
+    background-color: rgb(131, 126, 126);
+    color: white;
+}
