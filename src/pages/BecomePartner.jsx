@@ -62,12 +62,6 @@ const fileUrl = ''
                         
 
 
-
-
-
-                           
-                  
-                 
                      
                      <div className='container mt-4 '>
                         <div className='small-box dark-box mx-auto '>
@@ -130,8 +124,9 @@ const fileUrl = ''
                 </div>
             </div>
         </div>
-        <div class='row mt-4'>
-            <div class='col'>
+        
+        <div class='row mt-5 mb-5 border-top pt-5'>
+            <div class='col mt-1'>
                 <span class='fs-2' style={{ letterSpacing:"3px", wordSpacing:'3px' }}>From five members to fifteen, a little trust can go a long way</span>
             </div>
         </div>

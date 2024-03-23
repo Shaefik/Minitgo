@@ -1,9 +1,13 @@
- 
+ import { useContext } from 'react';
 import {Link} from 'react-router-dom'; 
 import { BsTrash3 } from 'react-icons/bs';
 import { AiOutlineHeart } from 'react-icons/ai';
+import myContext from "/home/use/Desktop/Clone/MGo/MGo/src/components/context/MyContext.js";
+import emptycart from  '../assets/emptycart2.jpg'
 
 const Cart = () => {
+  const context = useContext(myContext);
+  const { cartItems, setCartItems ,addToCart} = context;
   const products = [
     {
       id: 1,
@@ -78,6 +82,16 @@ const Cart = () => {
       price: "$21.27",
     },
   ];
+  let totalPrice =  0;/* calculated total price of products */
+  const shippingCost = 100; // Assuming shipping cost is 100 RS
+  
+  // Calculate total amount
+
+  // Iterate through cart items and sum up the prices
+  cartItems.forEach(item => {
+      totalPrice += parseFloat(item.product_price); // Assuming product_price is a string representing a number
+  });
+  const netTotalAmount = totalPrice + shippingCost;
 
     return (
 
@@ -90,19 +104,23 @@ const Cart = () => {
 <br></br>
 
 <section className="h-100 gradient-custom">
-      <div className="container py-5 h-100">
+  
+    
+     <div className="container py-5 h-100">
         <div className="row justify-content-center my-4">
           <div className="col-md-8">
             <div className="card mb-4">
               <div className="card-header py-3 rounded-pill">
-                <h5 className="mb-0">Cart - 2 items</h5>
+                <h5 className="mb-0">Total Cart items {cartItems.length}</h5>
               </div>
-              <div className="card-body">
+              {cartItems.map((item,id)=>(
+                <>
+                  <div className="card-body">
                 <div className="row">
                   <div className="col-lg-3 col-md-12 mb-4 mb-lg-0">
                     <div className="bg-image rounded hover-zoom hover-overlay">
                       <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Vertical/12a.webp"
+                        src={item.product_image1}
                         className="w-100"
                         alt="Product"
                       />
@@ -118,8 +136,8 @@ const Cart = () => {
                     <p>
                       <strong>Blue denim shirt</strong>
                     </p>
-                    <p>Color: blue</p>
-                    <p>Size: M</p>
+                    <p>{item.product_color2}</p>
+                    <p>{item.product_size}</p>
                     <br></br>
                     <button className='btn btn-danger mx-2'>
                     <BsTrash3/>
@@ -145,72 +163,44 @@ const Cart = () => {
                       </button>
                     </div>
                     <p className="text-start text-md-center">
-                      <strong>600 RS</strong>
+                      <strong>{item.product_price}</strong>
                     </p>
                   </div>
                 </div>
                 <hr className="my-4" />
                 <div className="row">
                   <div className="col-lg-3 col-md-12 mb-4 mb-lg-0">
-                    <div className="bg-image rounded hover-zoom hover-overlay">
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Vertical/13a.webp"
-                        className="w-100"
-                        alt="Product"
-                      />
-                      <a href="#!">
-                        <div
-                          className="mask"
-                          style={{ backgroundColor: "rgba(251, 251, 251, 0.2)" }}
-                        ></div>
-                      </a>
-                    </div>
+                  
                   </div>
-                  <div className="col-lg-5 col-md-6 mb-4 mb-lg-0">
-                    <p>
-                      <strong>Red hoodie</strong>
-                    </p>
-                    <p>Color: red</p>
-                    <p>Size: M</p>
-                    <br></br>
-                    <button className='btn btn-danger mx-2'>
-                    <BsTrash3/>
-                    </button>
-                    <button className='btn btn-secondary'
-                    > <AiOutlineHeart/>
-                    </button>
-                  </div>
-                  <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                    <div className="d-flex mb-4" style={{ maxWidth: "300px" }}>
-                      <button className="btn btn-primary px-3 me-2">
-                        <i className="minus"> - </i>
-                      </button>
-                      <input
-                        defaultValue={1}
-                        min={0}
-                        type="number"
-                        className="form-control text-center"
-                        placeholder="Quantity"
-                      />
-                      <button className="btn btn-primary px-3 ms-2">
-                        <i className="plus"> + </i>
-                      </button>
-                    </div>
-                    <p className="text-start text-md-center">
-                      <strong>600 RS</strong>
-                    </p>
-                  </div>
+                
+               
                 </div>
               </div>
+                
+                </>
+
+              ))}
+            
             </div>
+            {cartItems.length === 0 && (
+                <>
+                 <div className='d-flex mx-auto'>
+                  <img className='mx-auto' style={{width:'300px', height:"300px"}} src={emptycart} />
+                 </div>
+                </>
+            )}
+            {cartItems.length > 0  && (
             <div className="card mb-4">
-              <div className="card-body">
-                <p>
-                  <strong>Expected shipping delivery</strong>
-                </p>
-                <p className="mb-0">12.10.2020 - 14.10.2020</p>
-              </div>
+         
+               <div className="card-body">
+
+               <p>
+                 <strong>Expected shipping delivery</strong>
+               </p>
+               <p className="mb-0">12.10.2020 - 14.10.2020</p>
+             </div>
             </div>
+            )}
             <div className="card mb-4 mb-lg-0">
               <div className="card-body">
                 <p>
@@ -243,69 +233,78 @@ const Cart = () => {
               </div>
             </div>
           </div>
-          <div className="col-md-4">
-            <div className="card mb-4">
-              <div className="card-header rounded-pill">
-                <h5 className="mb-0">Summary</h5>
-              </div>
-              <div className="card-body">
-                <ul className="list-group list-group-flush">
-                  <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                    Products
-                    <span>1,200 RS</span>
-                  </li>
-                  <li className="list-group-item d-flex justify-content-between align-items-center px-0">
-                    Shipping
-                    <span>100 RS</span>
-                  </li>
-                  <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
-                    <div>
-                      <strong>Total amount</strong>
-                      <p className="mb-0">(including VAT)</p>
-                    </div>
-                    <span>
-                      <strong>1,350 RS</strong>
-                    </span>
-                  </li>
-                </ul>
-                <Link to="/checkout"  className="btn btn-lg btn-block btn-primary">
-                  Go to checkout
-                </Link >
-              </div>
-            </div>
-              {/* div for Recomended */}
-              <div className='card'>
-                <div className="card-header py-2 rounded-pill">
-                  <h5 className="mb-0">Recommended Items</h5>
-                </div>
-                <div className="d-flex gap-3   overflow-x-auto my-3">
-                  {products.map((prod,index) => (
-                    <div key={index} className="d-flex  flex-column bg-light  shadow rounded px-4" style={{ height: '430px' }}  >
-                      <img className="w-100 h-50 rounded" src={prod.img} alt={`Image ${prod.id}`} />
-                      <div className="d-flex flex-column justify-content-between p-1">
-                        <div className="d-flex flex-column">
-                          <h1 className="fs-4">{prod.name}</h1>
-                          <p className="text-muted">{prod.description}</p>
-                          <p className="text-muted">{prod.size}</p>
-                        </div>
-                        <div className="d-flex justify-content-center align-items-center fs-4 my-1 pb-1">
-                          <button className="btn  btn-dark w-100">❤</button>
-                          <div className="d-flex ">
-                            <button className="btn btn-dark w-100 mx-2 px-5">Buy</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+          {cartItems.length > 0 && (
+             <div className="col-md-4">
+             <div className="card mb-4">
+               <div className="card-header rounded-pill">
+                 <h5 className="mb-0">Summary</h5>
+               </div>
+               <div className="card-body">
+                 <ul className="list-group list-group-flush">
+                 <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+     Products
+     <span>{totalPrice.toFixed(2)} RS</span> 
+ </li>
+                   <li className="list-group-item d-flex justify-content-between align-items-center px-0">
+                     Shipping
+                     <span>100 RS</span>
+                   </li>
+                   <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                     <div>
+                       <strong>Total amount</strong>
+                       <p className="mb-0">(including VAT)</p>
+                     </div>
+                     <span>
+                       <strong>{netTotalAmount} </strong>
+                     </span>
+                   </li>
+                 </ul>
+                 <Link to="/checkout"  className="btn btn-lg btn-block btn-primary">
+                   Go to checkout
+                 </Link >
+               </div>
+             </div>
+               {/* div for Recomended */}
+               <div className='card'>
+                 <div className="card-header py-2 rounded-pill">
+                   <h5 className="mb-0">Recommended Items</h5>
+                 </div>
+                 <div className="d-flex gap-3   overflow-x-auto my-3">
+                   {products.map((prod,index) => (
+                     <div key={index} className="d-flex  flex-column bg-light  shadow rounded px-4" style={{ height: '430px' }}  >
+                       <img className="w-100 h-50 rounded" src={prod.img} alt={`Image ${prod.id}`} />
+                       <div className="d-flex flex-column justify-content-between p-1">
+                         <div className="d-flex flex-column">
+                           <h1 className="fs-4">{prod.name}</h1>
+                           <p className="text-muted">{prod.description}</p>
+                           <p className="text-muted">{prod.size}</p>
+                         </div>
+                         <div className="d-flex justify-content-center align-items-center fs-4 my-1 pb-1">
+                           <button className="btn  btn-dark w-100">❤</button>
+                           <div className="d-flex ">
+                             <button className="btn btn-dark w-100 mx-2 px-5">Buy</button>
+                           </div>
+                         </div>
+                       </div>
+                     </div>
+                   ))}
+ 
+ 
+ 
+                 </div>
+               </div>
+ 
+           </div>
 
-
-
-                </div>
-              </div>
-
-          </div>
+          )}
+         
         </div>
       </div>
+    
+    
+
+  
+     
     </section>
      
 

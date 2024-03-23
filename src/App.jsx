@@ -26,6 +26,7 @@ import FindNearMe from './pages/FindNearMe.jsx';
 import Connect from './pages/Connect.jsx';
 import Updates from './pages/Updates.jsx';
 import BecomePartner from './pages/BecomePartner.jsx';
+import MyState from './components/context/MyState.jsx'
 
 const App = () => {
   const location = useLocation();
@@ -45,6 +46,7 @@ const App = () => {
 
   return (
     <>
+        <MyState>
       {showHeader() && <Header />}
       
       <Routes>
@@ -76,6 +78,7 @@ const App = () => {
       </Routes>
    
        {showFooter() && <Footer />}
+       </MyState>
     </>
   );
 };
